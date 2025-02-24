@@ -49,13 +49,13 @@ func (a *App) WslStart() error {
 		return err
 	}
 	for _, d := range distros {
-		if strings.Contains(d.Name(), "Ubuntu") {
+		if d.Name() == "Ubuntu" {
 			distro = &d
 			break
 		}
 	}
 	if distro == nil {
-		return errors.New("ubuntu not found")
+		return errors.New("wsl Ubuntu not found")
 	}
 
 	cmd = exec.Command("wsl", "-d", distro.Name(), "-u", "root")
